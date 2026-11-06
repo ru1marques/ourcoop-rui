@@ -1,0 +1,218 @@
+/* Page framing only; map controls, rendering and profiles retain the source design. */
+html:has(body.resources-page) { background: #f7f7f3; }
+html > body.resources-page {
+  background: #f7f7f3 !important;
+  padding-top: 174px !important;
+}
+.resources-page .our-network-nav {
+  padding: 0 clamp(18px, 1.6vw, 30px);
+  border: 0;
+  background: transparent;
+  gap: 12px 24px;
+}
+.resources-page .our-network-nav a {
+  padding: 4px 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #121212;
+  font-size: clamp(9px, .66vw, 12px);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.resources-page .our-network-nav a[aria-current] { color: #ff2a83; background: none; }
+.resources-page > .our-cross-card {
+  margin: 20px clamp(18px, 1.6vw, 30px) 0 !important;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  max-width: 1050px;
+  font-size: clamp(9px, .66vw, 12px);
+  line-height: 1.4;
+}
+.resources-page #our-map {
+  max-width: none;
+  margin: 0;
+  padding: 54px clamp(18px, 1.6vw, 30px) 60px;
+}
+.resources-page #our-map .resources-heading,
+.resources-page #our-map .our-map-eyebrow,
+.resources-page #our-map .our-map-intro {
+  font-family: "OURGeist", Arial, Helvetica, sans-serif !important;
+  font-size: clamp(16px, 1.35vw, 23px);
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: 0;
+  text-transform: none;
+  color: #121212;
+  margin: 0;
+}
+.resources-page #our-map .resources-heading { color: #ff2a83; margin-bottom: 28px; }
+.resources-page #our-map .our-map-intro { margin-bottom: clamp(80px, 12vh, 150px); }
+/* Preserve the original map's typography alongside its original controls and styles. */
+.resources-page #our-map :is(.viz-controls, .legend, .layout, #our-zoom-controls, #our-results),
+.resources-page #our-map :is(.viz-controls, .legend, .layout, #our-zoom-controls) * {
+  font-family: Arial, sans-serif !important;
+}
+@media (max-width: 620px) {
+  html > body.resources-page { padding-top: 190px !important; }
+  .resources-page #our-map { padding-top: 36px; }
+}
+
+/* Search and the filter group each have their own continuous rule. */
+.resources-page #our-map .resources-filters {
+  display: grid;
+  grid-template-columns: minmax(240px, 1fr) minmax(0, 2.15fr);
+  align-items: end;
+  gap: 24px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+.resources-page #our-map .resources-filters,
+.resources-page #our-map .resources-filters * {
+  font-family: "OURGeist", Arial, Helvetica, sans-serif !important;
+  letter-spacing: 0;
+  color: #121212;
+}
+.resources-page #our-map .resources-filter-group {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) auto;
+  gap: 20px;
+  align-items: end;
+  border-bottom: 1px solid #121212;
+  padding-bottom: 6px;
+}
+.resources-page #our-map .resources-filters .form-label {
+  display: block;
+  min-width: 0;
+  margin: 0;
+  font-size: clamp(9px, .66vw, 12px);
+  line-height: 1.05;
+  font-weight: 400;
+}
+.resources-page #our-map .resources-filters .search-control { border-bottom: 1px solid #121212; padding-bottom: 6px; }
+.resources-page #our-map .resources-filters .form-control,
+.resources-page #our-map .resource-selector-trigger,
+.resources-page #our-map .resource-selector-options button,
+.resources-page #our-map #our-reset-filters {
+  font-size: clamp(16px, 1.35vw, 23px);
+  font-weight: 400;
+  line-height: 1.05;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  min-height: 0;
+  padding: 0;
+  background: transparent;
+}
+.resources-page #our-map .resources-filters .form-control { width: 100%; margin-top: 10px; height: auto; }
+.resources-page #our-map .resources-filters .form-control::placeholder { color: #aaa; opacity: 1; }
+.resources-page #our-map .resource-selector { position: relative; min-width: 0; }
+.resources-page #our-map .resource-selector-trigger { display: flex; align-items: center; gap: 10px; width: 100%; margin-top: 10px; text-align: left; cursor: pointer; }
+.resources-page #our-map .resource-selector-trigger::after { content: ''; flex-shrink: 0; width: .48em; height: .48em; border-right: 2px solid; border-bottom: 2px solid; transform: translateY(-.15em) rotate(45deg); }
+.resources-page #our-map .resource-selector-options {
+  position: absolute;
+  top: calc(100% + 7px);
+  left: 0;
+  z-index: 1100;
+  width: max-content;
+  min-width: 100%;
+  max-width: min(360px, 85vw);
+  max-height: 320px;
+  overflow-y: auto;
+  background: #e5e5e5;
+}
+.resources-page #our-map .resource-selector-options[hidden] { display: none; }
+.resources-page #our-map .resource-selector-options button { display: block; width: 100%; text-align: left; padding: 1px 0; cursor: pointer; }
+.resources-page #our-map .resource-selector-options button[aria-selected="true"],
+.resources-page #our-map .resource-selector-options button:hover,
+.resources-page #our-map .resource-selector-options button:focus-visible { background: #ffe8f3; color: #ff2a83; outline: none; }
+.resources-page #our-map #our-reset-filters { text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; cursor: pointer; }
+.resources-page #our-map .resources-map-view { display: flex; justify-content: flex-end; margin: 22px 0; }
+.resources-page #our-map .resources-map-view .form-label { max-width: 230px; }
+.resources-page #our-map .resources-filters :is(input, button):focus-visible { outline: 2px solid #ff2a83; outline-offset: 3px; }
+@media (max-width: 1000px) {
+  .resources-page #our-map .resources-filters { grid-template-columns: 1fr; }
+}
+@media (max-width: 620px) {
+  .resources-page #our-map .resources-filter-group { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 16px; }
+  .resources-page #our-map #our-reset-filters { justify-self: start; }
+}
+.resources-page #our-map .resources-filters select[hidden] { display: none !important; }
+
+/* Figma uses the custom SV Geist Bold face for both intro and filter values. */
+@font-face {
+  font-family: "OURGeistBold";
+  src: url("./assets/fonts/SV-GeistKICKVOIDLOOP3.0-Bold.otf") format("opentype");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+.resources-page {
+  --resources-body-size: clamp(16px, 1.35vw, 23px);
+}
+.resources-page #our-map :is(.resources-heading, .our-map-eyebrow, .our-map-intro),
+.resources-page #our-map .resources-filters :is(.form-control, .resource-selector-trigger, .resource-selector-options button, #our-reset-filters) {
+  font-family: "OURGeistBold", Arial, Helvetica, sans-serif !important;
+  font-weight: 700;
+  font-size: var(--resources-body-size);
+  font-synthesis: none;
+  line-height: 1;
+}
+.resources-page #our-map .resources-filters .form-label {
+  font-family: "OURGeistBold", Arial, Helvetica, sans-serif !important;
+  font-weight: 700;
+}
+
+.resources-page #our-map #our-reset-filters,
+.resources-page #our-map #our-reset-filters:hover,
+.resources-page #our-map #our-reset-filters:focus-visible {
+  color: #000;
+  background: transparent;
+}
+.resources-page #our-map .resources-map-view { display: flex; flex-wrap: wrap; align-items: start; justify-content: flex-end; gap: 12px 20px; }
+.resources-page #our-map .resources-map-view > label[hidden] { display: none !important; }
+.resources-page #our-map .resources-view-switcher { display: flex; gap: 14px; border-bottom: 1px solid #bfbfbd; }
+.resources-page #our-map .resources-map-view button {
+  font-family: "OURGeistBold", Arial, Helvetica, sans-serif !important;
+  font-weight: 700;
+  font-size: var(--resources-body-size);
+  line-height: 1;
+  padding: 0 0 10px;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  border-radius: 0;
+  background: transparent;
+  color: #bfbfbd;
+  cursor: pointer;
+}
+.resources-page #our-map .resources-map-view button[aria-pressed="true"] { color: #808080; border-bottom-color: #808080; }
+.resources-page #our-map .resources-map-view button:focus-visible { outline: 2px solid #ff2a83; outline-offset: 3px; }
+
+
+.resources-page #our-map .resources-view-switcher {
+  flex-wrap: nowrap;
+  max-width: 100%;
+  overflow-x: auto;
+}
+.resources-page #our-map .resources-view-switcher button { white-space: nowrap; flex-shrink: 0; }
+
+.resources-page #our-map .resources-filter-group,
+.resources-page #our-map .resources-filters .search-control { padding-bottom: 12px; }
+.resources-page #our-map .resource-selector-options { top: calc(100% + 13px); }
+
+.resources-page #our-map .our-map-intro { margin-bottom: 0; }
+.resources-page #our-map .resources-context {
+  max-width: 1050px;
+  margin: 20px 0 clamp(80px, 12vh, 150px);
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  font-size: clamp(9px, .66vw, 12px);
+  line-height: 1.4;
+}
+.resources-page #our-map .resources-context a { color: #121212; }

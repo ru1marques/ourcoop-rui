@@ -1,0 +1,73 @@
+/* Shared side overlays, adapted from the Figma overlay reference. */
+html:has(dialog.side-overlay[open]) { overflow: hidden; }
+body dialog.side-overlay,
+body #our-map dialog.side-overlay.bank-dialog {
+  position: fixed;
+  inset: 0 0 0 auto;
+  box-sizing: border-box;
+  width: min(606px, 100%);
+  max-width: 100vw;
+  height: 100dvh;
+  max-height: 100dvh;
+  margin: 0;
+  padding: clamp(70px, 13vh, 150px) clamp(24px, 3vw, 40px) 40px;
+  border: 0;
+  border-radius: 0;
+  background: rgba(1, 1, 1, .8);
+  color: #f7f7f3;
+  backdrop-filter: blur(25px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  font-family: "OURGeist", Arial, Helvetica, sans-serif;
+  font-size: clamp(16px, 1.35vw, 23px);
+  line-height: 1.15;
+}
+dialog.side-overlay[open] { animation: overlay-enter 280ms cubic-bezier(.2,.8,.2,1); }
+body dialog.side-overlay::backdrop,
+body #our-map dialog.side-overlay.bank-dialog::backdrop { background: rgba(0, 0, 0, .12); }
+body dialog.side-overlay :is(h2, h3, p, label, input, textarea, select, button) { font: inherit; }
+body dialog.side-overlay :is(h2, h3) { color: #f7f7f3; margin: 0 0 20px; }
+body dialog.side-overlay :is(p, small, .muted, .modalbody p) { color: rgba(247,247,243,.6); }
+body dialog.side-overlay :is(small, .muted) { font-size: clamp(9px, .66vw, 12px); }
+body dialog.side-overlay label { display: grid; gap: 10px; margin: 24px 0; color: rgba(247,247,243,.65); }
+body dialog.side-overlay :is(input:not([type="radio"]):not([type="checkbox"]), textarea, select),
+body #our-map dialog.side-overlay.bank-dialog :is(input, textarea, select) {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  padding: 8px 0;
+  border: 0;
+  border-bottom: 1px solid rgba(247,247,243,.45);
+  border-radius: 0;
+  background: transparent;
+  color: #f7f7f3;
+  font: inherit;
+}
+body dialog.side-overlay select option { background: #242424; color: #f7f7f3; }
+body dialog.side-overlay textarea { min-height: 120px; resize: vertical; }
+body dialog.side-overlay :is(.actions, .bank-actions) { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 30px; }
+body dialog.side-overlay button,
+body #our-map dialog.side-overlay.bank-dialog button {
+  padding: 6px 0;
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  border-radius: 0;
+  background: transparent;
+  color: #f7f7f3;
+  cursor: pointer;
+}
+body dialog.side-overlay :is(button.primary, button[type="submit"], .bank-primary) { color: #ff2a83; }
+body dialog.side-overlay .overlay-close,
+body #our-map dialog.side-overlay.bank-dialog .overlay-close {
+  position: absolute;
+  top: 24px;
+  right: clamp(24px, 3vw, 40px);
+  color: #f7f7f3;
+}
+body dialog.side-overlay .modalhead { padding: 0; border: 0; background: transparent; }
+body dialog.side-overlay .modalhead > .close { display: none; }
+body dialog.side-overlay .modalbody { padding: 0; }
+body dialog.side-overlay :is(.wallet-summary, .vote-option) { background: rgba(255,255,255,.08); color: #f7f7f3; border-color: rgba(255,255,255,.25); }
+body dialog.side-overlay :is(a, button, input, textarea, select):focus-visible { outline: 2px solid #ff2a83; outline-offset: 4px; }
+@keyframes overlay-enter { from { transform: translateX(100%); } to { transform: translateX(0); } }
+@media (prefers-reduced-motion: reduce) { dialog.side-overlay[open] { animation: none; } }

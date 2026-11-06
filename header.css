@@ -1,0 +1,133 @@
+@font-face {
+  font-family: "OURGeist";
+  src: url("./assets/fonts/SV-GeistKICKVOIDLOOP3.0-Bold.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+.hero__topbar {
+  --pink: #ff2a83;
+  --page-padding: clamp(18px, 1.6vw, 30px);
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: start;
+  gap: .18rem .65rem;
+  font-family: "OURGeist", Arial, Helvetica, sans-serif;
+  font-size: clamp(16px, 1.35vw, 23px);
+  font-weight: 400;
+  line-height: .95;
+}
+.hero__topbar .brand-row { grid-column: 1; grid-row: 1; display: flex; font-size: inherit; }
+.hero__topbar .brand { display: flex; align-items: center; height: .95em; }
+.hero__topbar .brand-logo { display: block; width: auto; height: .74em; }
+.hero__topbar .hero__nav { grid-column: 2; grid-row: 1; font-size: inherit; }
+.hero__topbar .header-links { grid-column: 3; grid-row: 1 / span 2; display: flex; flex-direction: column; align-items: flex-end; gap: .75rem; }
+.hero__topbar .join-link { align-self: flex-end; padding: .04em .18em; border-bottom: 2px solid var(--pink); background: rgba(18,18,18,.08); color: var(--pink); font-size: inherit; line-height: 1; text-decoration: none; }
+.hero__topbar .page-nav { display: flex; flex-direction: column; align-items: flex-end; gap: .15em; font-size: inherit; line-height: 1.1; }
+.hero__topbar .page-nav a { color: inherit; text-decoration: none; font-weight: 400; }
+.hero__topbar .page-nav a:hover { color: var(--pink); }
+.hero__topbar a:focus-visible { outline: 2px solid var(--pink); outline-offset: 3px; }
+.hero__topbar.subpage-header {
+  position: fixed;
+  top: var(--page-padding);
+  left: var(--page-padding);
+  right: var(--page-padding);
+  bottom: auto;
+  z-index: 1000;
+  box-sizing: border-box;
+  width: auto;
+  min-height: 0;
+  padding: 0;
+  margin: 0;
+  color: #121212;
+  background: transparent;
+  pointer-events: none;
+}
+.subpage-header a { pointer-events: auto; }
+.subpage-header .join-link { background: transparent; }
+.subpage-header .hero__nav { display: block; width: auto; margin: 0; padding: 0; }
+.subpage-header .current-page { color: var(--pink); white-space: nowrap; }
+@media (max-width: 780px) {
+  .hero__topbar { font-size: 16px; }
+}
+@media (max-width: 600px) {
+  .hero__topbar { grid-template-columns: minmax(0, 1fr) auto; }
+  .hero__topbar .hero__nav { grid-column: 1; grid-row: 2; width: auto; }
+  .hero__topbar .header-links { grid-column: 2; grid-row: 1 / span 2; }
+  .subpage-header .current-page { white-space: normal; }
+}
+
+/* Imported .brand rules must not change the shared logo's em-based sizing. */
+.hero__topbar .brand {
+  font-size: inherit;
+  line-height: .95;
+  font-weight: 400;
+  letter-spacing: 0;
+  padding: 0;
+  margin: 0;
+}
+
+/* Workspace links continue the page title in the shared top row. */
+.hero__topbar.subpage-header:has(> .our-network-nav) {
+  grid-template-columns: auto auto minmax(0, 1fr) auto;
+}
+.hero__topbar.subpage-header > .our-network-nav {
+  grid-column: 3;
+  grid-row: 1;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: .5em 1.5em;
+  margin: 0 0 0 1em;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  pointer-events: auto;
+  font-family: "OURGeist", Arial, Helvetica, sans-serif;
+  font-size: clamp(9px, .66vw, 12px);
+  line-height: 1.4;
+}
+.hero__topbar.subpage-header > .our-network-nav a {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #121212;
+  font: inherit;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.hero__topbar.subpage-header > .our-network-nav a[aria-current] { color: #ff2a83; background: transparent; }
+.hero__topbar.subpage-header:has(> .our-network-nav) > .header-links { grid-column: 4; }
+@media (max-width: 1000px) {
+  .hero__topbar.subpage-header:has(> .our-network-nav) { grid-template-columns: auto minmax(0, 1fr) auto; }
+  .hero__topbar.subpage-header > .our-network-nav { grid-column: 2; grid-row: 2; margin: .75em 0 0; }
+  .hero__topbar.subpage-header:has(> .our-network-nav) > .header-links { grid-column: 3; }
+}
+@media (max-width: 600px) {
+  .hero__topbar.subpage-header:has(> .our-network-nav) { grid-template-columns: minmax(0, 1fr) auto; }
+  .hero__topbar.subpage-header > .our-network-nav { grid-column: 1; grid-row: 3; }
+  .hero__topbar.subpage-header:has(> .our-network-nav) > .header-links { grid-column: 2; grid-row: 1 / span 3; }
+}
+
+/* Internal pages use the same logo silhouette in black. */
+.hero__topbar.subpage-header .brand-logo { filter: brightness(0); }
+
+/* Keep the call to action pink without the experimental text animation. */
+body .hero__topbar .header-links .join-link,
+body .hero__topbar .header-links .join-link:hover,
+body .hero__topbar .header-links .join-link:focus-visible {
+  color: #ff2a83;
+  border-color: #ff2a83;
+  background: transparent;
+  transform: none;
+  filter: none;
+}
+
+/* Internal navigation remains dark throughout scrolling. */
+.hero__topbar.subpage-header,
+.hero__topbar.subpage-header.at-footer { color: #121212; }
+.hero__topbar.subpage-header .page-nav a,
+.hero__topbar.subpage-header.at-footer .our-network-nav a { color: #121212; }
+.hero__topbar.subpage-header.at-footer .our-network-nav a[aria-current] { color: #ff2a83; }
+.hero__topbar .page-nav a:hover { color: #ff2a83; }

@@ -1,0 +1,119 @@
+.pending-page { margin: 0; background: #f7f7f3; color: #121212; font-family: Arial, Helvetica, sans-serif; }
+.pending-content { max-width: 1160px; margin: auto; padding: 60px 4%; }
+.pending-content h1 { font-size: clamp(48px, 8vw, 96px); font-weight: 400; margin: 0 0 24px; }
+
+/* Use the same typeface as the homepage, including imported widgets and controls. */
+:root {
+  --font-sans: "OURGeist", Arial, Helvetica, sans-serif;
+  --font-mono: "OURGeist", Arial, Helvetica, sans-serif;
+}
+html > body,
+body :where(main, section, article, aside, nav, footer, div, span, p, a,
+  h1, h2, h3, h4, h5, h6, label, button, input, select, option, textarea,
+  table, th, td, dt, dd, small, strong, summary, text, tspan) {
+  font-family: "OURGeist", Arial, Helvetica, sans-serif !important;
+  font-synthesis: none;
+}
+body :where(h1, h2, h3, h4, h5, h6, strong, b, button, th) {
+  font-weight: 400;
+}
+
+/* Consistent navigation between the cooperative's workspaces. */
+.cooperate-space-page main > .our-network-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  margin: 0 0 24px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+.cooperate-space-page main > .our-network-nav a {
+  display: block;
+  padding: 4px 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #121212;
+  font-size: clamp(9px, .66vw, 12px);
+  line-height: 1.4;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.cooperate-space-page main > .our-network-nav a[aria-current] { color: #ff2a83; background: transparent; }
+.cooperate-space-page main > .our-network-nav a:focus-visible { outline: 2px solid #ff2a83; outline-offset: 3px; }
+
+/* Place workspace navigation below the fixed site header on both pages. */
+body.cooperate-space-page { padding-top: 174px; }
+.cooperate-space-page > .our-network-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  margin: 0 0 24px;
+  padding: 0 clamp(18px, 1.6vw, 30px);
+  border: 0;
+  background: transparent;
+}
+.cooperate-space-page > .our-network-nav a {
+  display: block;
+  padding: 4px 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #121212;
+  font-size: clamp(9px, .66vw, 12px);
+  line-height: 1.4;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.cooperate-space-page > .our-network-nav a[aria-current] { color: #ff2a83; background: transparent; }
+.cooperate-space-page > .our-network-nav a:focus-visible { outline: 2px solid #ff2a83; outline-offset: 3px; }
+body.working-groups-page > aside { top: 230px; overflow-y: auto; }
+@media (max-width: 780px) {
+  body.cooperate-space-page { padding-top: 190px; }
+  body.working-groups-page > aside { position: relative; inset: auto; width: 100%; box-sizing: border-box; }
+  .working-groups-page .topbar, .working-groups-page main { margin-left: 0; }
+}
+
+/* Full-height workspace sidebars sit behind the shared, fixed header. */
+body.cooperate-space-page { background: #f7f7f3; color: #121212; }
+.cooperate-space-page > .our-network-nav { position: relative; z-index: 2; }
+.cooperate-space-page aside {
+  box-sizing: border-box;
+  background: #e5e5e3;
+  color: #121212;
+  border-right: 1px solid #ccccca;
+}
+body.working-groups-page > aside,
+.cooperate-space-page .shell > aside {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  height: 100dvh;
+  padding-top: 238px;
+  overflow-y: auto;
+}
+.cooperate-space-page .shell > aside { width: 225px; }
+.cooperate-space-page .shell > main { grid-column: 2; }
+.working-groups-page > aside .nav { margin-top: 0; }
+.cooperate-space-page aside :is(.sidebottom, .sidefooter, small) { color: #777; }
+.cooperate-space-page aside .sidebottom { border-color: #bfbfbd; }
+.cooperate-space-page aside :is(.nav .active, .side button.active) { background: #ffdfed; color: #121212; }
+.cooperate-space-page aside .avatar { background: #ff2a83; color: #121212; }
+@media (min-width: 781px) and (max-width: 1000px) {
+  .cooperate-space-page .shell > aside { width: 180px; }
+}
+@media (max-width: 780px) {
+  body.working-groups-page > aside,
+  .cooperate-space-page .shell > aside {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: auto;
+    padding: 24px 20px;
+    overflow-y: visible;
+    border-right: 0;
+  }
+  .cooperate-space-page .shell { display: block; }
+}
